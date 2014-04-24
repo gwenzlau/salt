@@ -8,6 +8,8 @@
 		<div class="panel-body">
 		<p><%= @post.description %></p>
 
+		<i>posted by<%= @user.name %></i>
+
 		<% if @post.user == current_user %>
 			<%= link_to edit_post_path(@post) do %>
         <span class="glyphicon glyphicon-edit"></span>

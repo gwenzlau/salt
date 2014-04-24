@@ -2,8 +2,11 @@ Salt::Application.routes.draw do
   resources :posts
 
   devise_for :users
+  resources :users, :only => [:show, :index]
   root "pages#home"
   get"about"=>"pages#about"
+
+  get 'users/:id' => 'users#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -2,7 +2,7 @@
  <% @posts.each do |post| %>
  <p><%= link_to post.description, post %></p>
  <% if current_user && post.user == current_user %>
-          <div class="actions">
+         <small> <div class="actions">
             <%= link_to edit_post_path(post) do %>
               <span class="glyphicon glyphicon-edit"></span>
               Edit
@@ -11,6 +11,7 @@
               <span class="glyphicon glyphicon-trash"></span>
               Delete
             <% end %>
-          </div>
+          </div></small>
         <% end %>
+        <hr>
  <% end %>
