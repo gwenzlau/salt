@@ -3,11 +3,25 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+group :production do
+	gem 'pg'
+  gem 'rails_12factor'
+end
+
+group :assets do
+  gem 'asset_sync'
+end
+
+group :development, :test do
+  gem 'dotenv-rails'
+  gem 'sqlite3'
+  gem 'rspec-rails', '~> 2.0'
+  gem 'shoulda-matchers', '~> 2.4'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem'bootstrap-sass'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
