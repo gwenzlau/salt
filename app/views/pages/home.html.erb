@@ -1,7 +1,18 @@
 <div class="jumbotron">
-	<h1>Salt Agents only beyond this point.</h1>
+	 <% if user_signed_in? %>
+	<div align="center">
+		<h2>Welcome, Slyfox. What would you like to do?</h2>
+		<br>
+	 <p>
+      <%= link_to "Post a mission", new_post_path, class: "btn btn-default btn-lg" %>
+         <%= link_to "Be an operative", posts_path, class: "btn btn-primary btn-lg" %>
+       </p> 
+   </div>
+	 <% else %>
+	<h1>Slyfoxes only beyond this point.</h1>
 	<p>
       <%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg" %>
          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
        </p> 
+      <% end %> 
 </div>
