@@ -7,15 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    # Create the user from params
-    @user = User.new(params[:user])
-    if @user.save
-      # Deliver the signup email
-      Notifier.send_signup_email(@user).deliver
-      redirect_to(@user, :notice => 'Welcome!')
-    else
-      render :action => 'index'
-    end
+    @user = User.create( user_params )
   end
 
   def edit
@@ -36,6 +28,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-  params.require(:user).permit(:name, :location)
+  params.require(:user).permit(:name, :location, :avatar)
   end
 end
