@@ -1,15 +1,19 @@
-<%= link_to 'Back', posts_path %>
+
 
 <div class="row">
 	<div class="col-md-offset-2 col-md-8">
 		<div class="panel panel-default">
 		<div class="panel-heading center">
+			<%= link_to 'Back', posts_path %>
 		</div>
 		<div class="panel-body">
-		<p><%= @post.location %></p>
-		<p><%= @post.description %></p>
-
-		<i>posted by<%= @user %></i>
+		<i>Agent<%= @user %> needs an operative</i>
+		<p> in <%= @post.location %></p>
+		<h3 align="center"><%= @post.description %></h3>
+		<i>Mission details:</i>
+		<strong><%= @post.details %></strong>
+		<br>
+		
 
 		<% if @post.user == current_user %>
 			<%= link_to edit_post_path(@post) do %>
