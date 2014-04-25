@@ -1,4 +1,5 @@
-<h1> Post Index </h1>
+<h1 align="center"> Recent Missions  <span class="badge"><%= Post.count %></span></h1>
+<hr>
  <% @posts.each do |post| %>
  <p>Agent <%= link_to post.user_id, post.user %> needs <%= link_to post.description, post %> in <%= post.location %> by <%= post.deadline %></p>
  <% if current_user && post.user == current_user %>

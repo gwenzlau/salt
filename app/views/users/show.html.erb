@@ -5,8 +5,10 @@
 <h2 align="center">Agent <%= @user.name %></h2>
 <p align="center"><%= @user.location %></p>
 
-<h5>Missions</h5>
-<hr>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#">Completed Missions</a></li>
+  <li><a href="#">Skills</a></li>
+</ul>
 <% @posts.each do |post| %>
 <li><%= link_to post.description, post %> in <%= post.location %></li>
 <% end %>
