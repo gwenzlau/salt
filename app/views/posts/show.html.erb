@@ -6,9 +6,10 @@
 		<div class="panel-heading center">
 		</div>
 		<div class="panel-body">
+		<p><%= @post.location %></p>
 		<p><%= @post.description %></p>
 
-		<i>posted by<%= @user.name %></i>
+		<i>posted by<%= @user %></i>
 
 		<% if @post.user == current_user %>
 			<%= link_to edit_post_path(@post) do %>

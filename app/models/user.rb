@@ -5,4 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts, dependent: :destroy
+
+  def public_params
+    {
+      id: id,
+      name: name,
+    }
+  end
 end
