@@ -7,7 +7,7 @@
 			<%= link_to 'Back', posts_path %>
 		</div>
 		<div class="panel-body">
-		<i>Agent<%= @user %> needs an operative</i>
+		<i>Agent <%= link_to @post.user.name, @post.user %> needs an operative</i>
 		<p> in <%= @post.location %></p>
 		<h3 align="center"><%= @post.description %></h3>
 		<i>Mission details:</i>

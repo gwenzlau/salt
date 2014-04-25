@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :posts, dependent: :destroy
 
-  #validates :name, presence: true
+  validates :name, presence: true
 
   def public_params
     {

@@ -7,7 +7,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/">SlyFox<img src="https://s3-us-west-2.amazonaws.com/slyfoxco/navbar-icon.png" alt="Slyfox"></a>
+    <a class="navbar-brand" href="/">Slyfox<img src="https://s3-us-west-2.amazonaws.com/slyfoxco/navbar-icon.png" alt="Slyfox"></a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
@@ -15,9 +15,9 @@
     <ul class="nav navbar-nav navbar-right">
       <li><%= link_to "About", about_path %></li> 
        <% if user_signed_in? %>
-          <li><%= link_to current_user.id, current_user %></li>
-          <li><%= link_to "Posts", posts_path %></li>
-          <li><%= link_to "New Post", new_post_path %></li>
+          <li><%= link_to current_user.name, current_user %></li>
+          <li><%= link_to "Missions", posts_path %></li>
+          <li><%= link_to "New Mission", new_post_path %></li>
           <li><%= link_to "Account Settings", edit_user_registration_path %></li>
           <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
         <% else %>
