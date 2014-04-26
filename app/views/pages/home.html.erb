@@ -1,6 +1,6 @@
-<div class="jumbotron">
+
 	 <% if user_signed_in? %>
-	<div align="center">
+	<div align="center"><div class="jumbotron">
 		<h2>Welcome, Slyfox. What would you like to do?</h2>
 		<br>
 	 <p>
@@ -9,10 +9,13 @@
        </p> 
    </div>
 	 <% else %>
-	<h1>Slyfoxes only beyond this point.</h1>
+	 <div class="jumbotron"><h1 align="center"> The SlyFox Delivery Co </h1><h3 align="center">Connect to the people you love the most
+	through the people you know the least. </h3></div>
+	 <div align="center">
+	<h3>Slyfoxes only beyond this point.</h3>
 	<p>
       <%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg" %>
          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
        </p> 
+   </div>
       <% end %> 
-</div>

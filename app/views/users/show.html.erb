@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-offset-2 col-md-8">
-<%= image_tag @user.avatar.url %>
+<%= image_tag @user.avatar.url, :class=>"profile-avatar" %>
 
 <h2 align="center">Agent <%= @user.name %></h2>
 <p align="center"><%= @user.location %></p>
@@ -10,7 +10,7 @@
   <li><a href="#">Skills</a></li>
 </ul>
 <% @posts.each do |post| %>
-<li><%= link_to post.description, post %> in <%= post.location %></li>
+<li><%= link_to post.description, post %> in <%= post.location %> posted on <%= post.created_at.strftime("%d %b. %Y") %></li>
 <% end %>
 
 </div>
