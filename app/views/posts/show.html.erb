@@ -15,7 +15,7 @@
 		<br>
 		<br>
 		<%=link_to "Interested", vote_post_path(@post), method: "post", class: "btn btn-primary" %>
-		<%= @post.votes.size %>
+		<%= @post.votes.size %> agents interested |
 		<%= @post.votes.up.by_type(User).voters %>
 		
 
