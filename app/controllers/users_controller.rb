@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user.update_without_password(devise_parameter_sanitizer.sanitize(:account_update))
     if @user.update(user_params)
       redirect_to @user, notice: 'Account was successfully updated.'
     else
