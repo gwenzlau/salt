@@ -10,6 +10,10 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+
+    if signed_in?
+      @user = current_user
+    end
   end
 
   def new
