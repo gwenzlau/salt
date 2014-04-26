@@ -13,13 +13,25 @@
 		<i>Mission details:</i>
 		<strong><%= @post.details %></strong>
 		<br>
+		<br>
+		<%=link_to "Interested", vote_post_path(@post), method: "post", class: "btn btn-primary" %>
+		<%= @post.votes.size %>
+		<%= @post.votes.up.by_type(User).voters %>
 		
 
 		<% if @post.user == current_user %>
+		<hr>
+			These agents are interested in the mission:
+			<hr>
 			<%= link_to edit_post_path(@post) do %>
+			<br>
         <span class="glyphicon glyphicon-edit"></span>
         Edit
       <% end %>
+      <%= link_to @post, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+              Delete
+            <% end %>
 		<% end %>
 		</div>
 	</div>

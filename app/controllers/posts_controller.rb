@@ -45,6 +45,12 @@ class PostsController < ApplicationController
     redirect_to posts_url
   end
 
+  def vote
+    @post = Post.find(params[:id])
+    @post.vote
+    redirect_to :back, notice: "Thanks, you SlyFox, you. We will be in touch."
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
