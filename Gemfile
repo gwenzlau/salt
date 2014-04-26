@@ -6,7 +6,6 @@ gem "paperclip", "~> 4.1"
 gem 'aws-sdk'
 gem 'simple_form'
 gem 'devise'
-gem 'aws-sdk'
 gem 'acts_as_votable', '~> 0.8.0'
 
 group :production do
