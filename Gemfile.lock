@@ -219,8 +219,7 @@ DEPENDENCIES
   dotenv-rails
   jbuilder (~> 1.2)
   jquery-rails
-  omniauth
-  omniauth-facebook (= 1.4.0)
+  omniauth-facebook
   paperclip (~> 4.1)
   pg
   rails (= 4.0.2)
