@@ -7,16 +7,19 @@
 			<%= link_to 'Back', posts_path %><span style="float:right;"><small>posted </small><i><%= @post.created_at.strftime("%d %b. %Y") %></i></span>
 		</div>
 		<div class="panel-body">
-		<i>Agent <%= link_to @post.user.name, @post.user %> needs an operative</i>
-		<p> in <%= @post.location %> by <%= @post.deadline %></p>
-		<h3 align="center"><%= @post.description %></h3>
+		<i>A <%= @post.location %> based SlyFox needs an operative for:</i>
+		
+		<h3 align="center">Operation: <%= @post.description %></h3>
+		<p> Must be completed by: <%= @post.deadline %></p>
 		<i>Mission details:</i>
 		<strong><%= @post.details %></strong>
 		<br>
 		<br>
-		<%=link_to "Interested", vote_post_path(@post), method: "post", class: "btn btn-primary" %>
-		<%= @post.votes.size %> agents interested |
-		<%= @post.votes.up.by_type(User).voters %>
+			
+			<%=link_to "Interested", vote_post_path(@post, type: "up"), method: "put", class: "btn btn-primary" %>
+		
+
+		<%= @post.votes.up.size %> agents interested |
 		
 
 		<% if @post.user == current_user %>

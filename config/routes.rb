@@ -1,6 +1,8 @@
 Salt::Application.routes.draw do
   resources :posts do
-    member { post :vote }
+    member do
+      put "vote", to: "posts#vote"
+    end
   end
 
   devise_for :users, :controllers => { :registrations => "registrations" }

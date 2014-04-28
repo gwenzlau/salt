@@ -47,8 +47,8 @@ class PostsController < ApplicationController
 
   def vote
     @post = Post.find(params[:id])
-    @post.vote
-    redirect_to :back, notice: "Thanks, you SlyFox, you. We will be in touch."
+    @post.liked_by current_user
+    redirect_to :back, notice: "Thanks, SlyFox. We will be in touch."
   end
 
   private

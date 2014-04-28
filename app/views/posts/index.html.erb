@@ -1,7 +1,9 @@
-<h1 align="center"> Recent Missions  <span class="badge"><%= Post.count %></span></h1>
+<h1 align="center"><span class="badge"><%= Post.count %></span> Recent Missions  </h1>
 <hr>
- <% @posts.each do |post| %>
- <p>Agent <%= link_to post.user_id, post.user %> needs <%= link_to post.description, post %> in <%= post.location %> by <%= post.deadline %></p>
+<div class="list-group">
+  
+ <span class="list-group-item"><% @posts.each do |post| %>
+  Operation <strong><%= link_to post.description, post %></strong> in <%= post.location %> must be completed by <%= post.deadline %>
  <% if current_user && post.user == current_user %>
          <small> <div class="actions">
             <%= link_to edit_post_path(post) do %>
@@ -15,4 +17,5 @@
           </div></small>
         <% end %>
         <hr>
- <% end %>
+ <% end %></span>
+</div>
