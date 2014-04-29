@@ -17,16 +17,16 @@
 		<br>
 			
 			<% if current_user.voted_for?(@post) %>
-			<button class="btn btn-primary">Well Done</button>
+			<button class="btn btn-disabled">Well Done</button>
 			<% else %>
 			<%=link_to "Interested", vote_post_path(@post, type: "up"), method: "put", class: "btn btn-primary" %>
 			<% end %>		
 
 		<% if @post.user == current_user %>
 		<hr>
-			These are the <%= @post.votes.up.all %> agents interested the mission.
+			There are  <%= @post.votes.size %> agents interested the mission.
 			<br>
-			Voted by: <%= @post.vote_by @user %>
+			Voted by: <%= @post.votes.up.all %><%= @voter_id %>
 			<% @post.votes.each do |voter| %>
 			<%=  %>
 			<% end %>
