@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if signed_in?
       @user = current_user
-      @voter = Post.where(:user_id => params[:id])
+      @voter = User.where(@post.liked_by @user)
     end
   end
 

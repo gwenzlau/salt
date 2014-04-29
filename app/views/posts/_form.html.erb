@@ -13,8 +13,8 @@
 
   <div class="form-group">
     <%= f.label :location %>
-    <%= f.select :location, options_for_select([['New York City'], ['Los Angeles']]), class: "form-control" %>
-
+    <%= f.select :location, options_for_select([['New York City'], ['Los Angeles'], ['Nashville']]), class: "form-control" %>
+<br>
     <%= f.label "Operation Title:" %>
     <%= f.text_field :description, class: "form-control", :placeholder => "Milk n cookies" %>
     <%= f.label :mission_details %>

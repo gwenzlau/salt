@@ -17,18 +17,27 @@
 		<br>
 			
 			<% if current_user.voted_for?(@post) %>
-			<button class="btn btn-disabled">Well Done</button>
+			<button disabled class="btn btn-disabled">Well Done</button>
 			<% else %>
 			<%=link_to "Interested", vote_post_path(@post, type: "up"), method: "put", class: "btn btn-primary" %>
 			<% end %>		
 
 		<% if @post.user == current_user %>
 		<hr>
-			There are  <%= @post.votes.size %> agents interested the mission.
+
+			<p align="center"><i>For your eyes only...</i></p>
 			<br>
-			Voted by: <%= @post.votes.up.all %><%= @voter_id %>
-			<% @post.votes.each do |voter| %>
-			<%=  %>
+
+			 <%= pluralize @post.votes.size, "agent" %> interested in this mission
+			<br>
+			Voted by: <%= @post.votes.up.all %>
+			<br>
+			Stats: <%= @post.liked_by @user %>
+			<% @voter.each do |voter| %>
+			<ul>
+				<li>Name: <% @voter.name%></li>
+				<li>Email: <%=  @user.voter.email%></li>
+			</ul>
 			<% end %>
 
 			<hr>
