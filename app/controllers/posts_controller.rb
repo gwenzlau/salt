@@ -10,9 +10,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-
     if signed_in?
       @user = current_user
+      @voter = Post.where(:user_id => params[:id])
     end
   end
 

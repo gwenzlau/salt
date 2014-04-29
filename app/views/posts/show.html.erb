@@ -16,21 +16,27 @@
 		<br>
 		<br>
 			
+			<% if current_user.voted_for?(@post) %>
+			<button class="btn btn-primary">Well Done</button>
+			<% else %>
 			<%=link_to "Interested", vote_post_path(@post, type: "up"), method: "put", class: "btn btn-primary" %>
-		
-
-		<%= @post.votes.up.size %> agents interested |
-		
+			<% end %>		
 
 		<% if @post.user == current_user %>
 		<hr>
-			These agents are interested in the mission:
+			These are the <%= @post.votes.up.all %> agents interested the mission.
+			<br>
+			Voted by: <%= @post.vote_by @user %>
+			<% @post.votes.each do |voter| %>
+			<%=  %>
+			<% end %>
+
 			<hr>
 			<%= link_to edit_post_path(@post) do %>
 			<br>
         <span class="glyphicon glyphicon-edit"></span>
-        Edit
-      <% end %>
+        Edit 
+      <% end %>  
       <%= link_to @post, method: :delete, data: { confirm: 'Are you sure?' } do %>
               <span class="glyphicon glyphicon-trash"></span>
               Delete
