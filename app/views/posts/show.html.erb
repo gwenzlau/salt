@@ -26,8 +26,8 @@
 		<br>
 		<br>
 			<% if @post.user == current_user %>
-			 <button disabled class="btn btn-disabled">Interested Agents will Click this</button>
-			 <% else %>
+			    <button disabled class="btn btn-disabled">Interested Agents will Click this</button>
+			<% else %>
 				<% if current_user.voted_for?(@post) %>
 				  <button disabled class="btn btn-disabled">Well Done</button>
 				<% else %>
@@ -43,16 +43,16 @@
 
 			 <%= pluralize @post.votes.size, "agent" %> interested in this mission
 			<br>
-			Voted by: <%= link_to @post.votes.up.all, @post %>
-			/ <%= @post.vote %>
-			<br>
-			Stats: <%=  @user.voted_up_on? @post %>
-			<% @post.votes.each do |voter| %>
-			<ul>
-				<li>Name: <% @post.liked_by @votes %></li>
-			</ul>
-			<% end %>
+			Voted by: <%= @post.votes.up.each do |voter| %>
 
+			<li>
+				<%= link_to (image_tag (User.find(voter.voter_id).avatar.url(:thumb))), user_path(User.find(voter.voter_id)) %>
+				Name: <%= link_to User.find(voter.voter_id).name, user_path(User.find(voter.voter_id)) %>
+				Email: <%= mail_to User.find(voter.voter_id).email %>
+			</li>
+			<hr>
+			<% end %>
+			<br>
 			<hr>
 			<%= link_to edit_post_path(@post) do %>
 			<br>
