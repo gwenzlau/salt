@@ -8,14 +8,11 @@
 		<% end %>
 	<% else %>
 	<% end %>
-	<% if @post.status == 1 %>
 			<%= form_for(@post) do |f| %>
 			<%= f.hidden_field :post_id, :value => @post.id %>
 			<%= f.hidden_field :status, :value => "2" %>
 			<%= f.button "Accomplished", :class => "btn btn-primary btn-sm" %>
 			<% end %>
-	<% else %>
-	<% end %>
 	<% if @post.status == 2 %>
 		<button disabled class="btn btn-disabled"> Mission Accomplished </button>
 	<% else %>
