@@ -6,9 +6,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order("created_at DESC")
-    @open_missions = Post.where(:status => "0")
-    @ip_missions = Post.where(:status => "1")
-    @acc_missions = Post.where(:status => "2")
+    @open_missions = Post.where(:status => "0").order("created_at DESC")
+    @ip_missions = Post.where(:status => "1").order("created_at DESC")
+    @acc_missions = Post.where(:status => "2").order("created_at DESC")
     @status = current_user.posts.where(:post_id => params[:id])
   end
 
@@ -16,7 +16,6 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     if signed_in?
       @user = current_user
-      @voter = User.where(@post.liked_by @user)
     end
   end
 
@@ -51,7 +50,7 @@ class PostsController < ApplicationController
 
   def vote
     @post = Post.find(params[:id])
-    @post.liked_by @user
+    @post.liked_by current_user
     redirect_to :back, notice: "Thanks, SlyFox. We will be in touch."
   end
 
