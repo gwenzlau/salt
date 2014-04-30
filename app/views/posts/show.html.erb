@@ -26,7 +26,6 @@
 		<br>
 		<br>
 			<% if @post.user == current_user %>
-			    <button disabled class="btn btn-disabled">Interested Agents will Click this</button>
 			<% else %>
 				<% if current_user.voted_for?(@post) %>
 				  <button disabled class="btn btn-disabled">Well Done</button>
