@@ -12,6 +12,7 @@
   <% end %>
 
   <div class="form-group">
+    <%= f.hidden_field :status, :value => "0" %>
     <%= f.label :location %>
     <%= f.select :location, options_for_select([['New York City'], ['Los Angeles'], ['Nashville']]), class: "form-control" %>
 <br>

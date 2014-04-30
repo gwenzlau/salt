@@ -1,8 +1,31 @@
-<h1 align="center"><span class="badge"><%= Post.count %></span> Recent Missions  </h1>
+<h1 align="center"><span class="badge"><%= Post.count %></span> Missions  </h1>
 <hr>
-<div class="list-group">
-  
- <span class="list-group-item"><% @posts.each do |post| %>
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#open" data-toggle="tab">Open</a></li>
+  <li><a href="#in-progress" data-toggle="tab">In Progress</a></li>
+  <li><a href="#accomplished" data-toggle="tab">Accomplished</a></li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade in active" id="open">
+    <% @open_missions.each do |post| %>
+    Operation <strong><%= link_to post.description, post %></strong> in <%= post.location %> must be completed by <%= post.deadline %>
+    <% if current_user && post.user == current_user %>
+      <small> <div class="actions">
+            <%= link_to edit_post_path(post) do %>
+              <span class="glyphicon glyphicon-edit"></span>
+              Edit
+            <% end %>
+            <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+              Delete
+            <% end %>
+          </div></small>
+    <% end %>
+        <hr>
+ <% end %>
+  </div>
+  <div class="tab-pane fade" id="in-progress">
+  <% @ip_missions.each do |post| %>
   Operation <strong><%= link_to post.description, post %></strong> in <%= post.location %> must be completed by <%= post.deadline %>
  <% if current_user && post.user == current_user %>
          <small> <div class="actions">
@@ -17,5 +40,30 @@
           </div></small>
         <% end %>
         <hr>
- <% end %></span>
+  <% end %>
+  </div>
+  <div class="tab-pane fade" id="accomplished">
+    <% @acc_missions.each do |post| %>
+  Operation <strong><%= link_to post.description, post %></strong> in <%= post.location %> must be completed by <%= post.deadline %>
+ <% if current_user && post.user == current_user %>
+         <small> <div class="actions">
+            <%= link_to edit_post_path(post) do %>
+              <span class="glyphicon glyphicon-edit"></span>
+              Edit
+            <% end %>
+            <%= link_to post, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+              Delete
+            <% end %>
+          </div></small>
+        <% end %>
+        <hr>
+ <% end %>
+  </div>
 </div>
+
+<script>
+  $(function () {
+    $('#myTab a:last').tab('show')
+  })
+</script>

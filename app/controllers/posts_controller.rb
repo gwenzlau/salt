@@ -6,6 +6,10 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order("created_at DESC")
+    @open_missions = Post.where(:status => "0")
+    @ip_missions = Post.where(:status => "1")
+    @acc_missions = Post.where(:status => "2")
+    @status = current_user.posts.where(:post_id => params[:id])
   end
 
   def show
@@ -47,8 +51,30 @@ class PostsController < ApplicationController
 
   def vote
     @post = Post.find(params[:id])
-    @post.liked_by current_user
+    @post.liked_by @user
     redirect_to :back, notice: "Thanks, SlyFox. We will be in touch."
+  end
+
+  def open_mission
+    @posts = current_user.posts.where(status: "0")
+  end
+
+  def ip_mission
+    @post.activity key: 'post.ip_mission'
+    if @post.update_attribute(:status, "1")
+      redirect_to @post, :notice => "Mission In Progress"
+    else
+      redirect_to @post, :notice => "An error occured while changing the mission status."
+    end
+  end
+
+  def acc_mission
+    @post.activity key: 'post.acc_mission'
+    if @post.update_attribute(:status, "2")
+      redirect_to @post, :notice => "Mission Accomplished"
+    else
+     redirect_to @post,  :notice => "An error occured while changing the mission status."
+    end
   end
 
   private
@@ -64,6 +90,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:description, :location, :details, :deadline)
+      params.require(:post).permit(:description, :location, :details, :deadline, :status)
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140426180544) do
+ActiveRecord::Schema.define(version: 20140429182543) do
 
   create_table "posts", force: true do |t|
     t.string   "description"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20140426180544) do
     t.string   "title"
     t.string   "details"
     t.date     "deadline"
+    t.integer  "status"
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
@@ -45,6 +46,8 @@ ActiveRecord::Schema.define(version: 20140426180544) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

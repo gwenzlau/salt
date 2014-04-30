@@ -2,6 +2,9 @@ Salt::Application.routes.draw do
   resources :posts do
     member do
       put "vote", to: "posts#vote"
+      get :open_mission
+      get :ip_mission
+      get :acc_mission
     end
   end
 

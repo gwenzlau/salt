@@ -5,9 +5,19 @@
 		<div class="panel panel-default">
 		<div class="panel-heading center">
 			<%= link_to 'Back', posts_path %><span style="float:right;"><small>posted </small><i><%= @post.created_at.strftime("%d %b. %Y") %></i></span>
+			<% if @post.status == 0 %>
+			<h4>Mission Status: Accepting Agents </h4>
+			<% elsif @post.status == 1 %>
+			<h4>Mission Status: In Progress </h4>
+			<% elsif @post.status == 2 %>
+			<h4>Mission Status: Accomplished </h4>
+			<% end %>
+
+			<%= render 'status' %>
+
 		</div>
 		<div class="panel-body">
-		<i>A <%= @post.location %> based SlyFox needs an operative for:</i>
+		<i>A  based SlyFox needs an <%= @post.location %> operative for:</i>
 		
 		<h3 align="center">Operation: <%= @post.description %></h3>
 		<p> Must be completed by: <%= @post.deadline %></p>
@@ -15,12 +25,15 @@
 		<strong><%= @post.details %></strong>
 		<br>
 		<br>
-			
-			<% if current_user.voted_for?(@post) %>
-			<button disabled class="btn btn-disabled">Well Done</button>
-			<% else %>
-			<%=link_to "Interested", vote_post_path(@post, type: "up"), method: "put", class: "btn btn-primary" %>
-			<% end %>		
+			<% if @post.user == current_user %>
+			 <button disabled class="btn btn-disabled">Interested Agents will Click this</button>
+			 <% else %>
+				<% if current_user.voted_for?(@post) %>
+				  <button disabled class="btn btn-disabled">Well Done</button>
+				<% else %>
+				  <%=link_to "Interested", vote_post_path(@post, type: "up"), method: "put", class: "btn btn-primary" %>
+				<% end %>	
+			<% end %>	
 
 		<% if @post.user == current_user %>
 		<hr>
@@ -30,13 +43,13 @@
 
 			 <%= pluralize @post.votes.size, "agent" %> interested in this mission
 			<br>
-			Voted by: <%= @post.votes.up.all %>
+			Voted by: <%= link_to @post.votes.up.all, @post %>
+			/ <%= @post.vote %>
 			<br>
-			Stats: <%= @post.liked_by @user %>
-			<% @voter.each do |voter| %>
+			Stats: <%=  @user.voted_up_on? @post %>
+			<% @post.votes.each do |voter| %>
 			<ul>
-				<li>Name: <% @voter.name%></li>
-				<li>Email: <%=  @user.voter.email%></li>
+				<li>Name: <% @post.liked_by @votes %></li>
 			</ul>
 			<% end %>
 
