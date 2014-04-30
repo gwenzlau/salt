@@ -1,6 +1,7 @@
-<p>Update mission status to:</p>
+
 <% if @post.user == current_user %>
 	<% if @post.status == 0 %>
+	<p>Update mission status to:</p>
 		 <%= form_for(@post) do |f| %>
 		<%= f.hidden_field :post_id, :value => @post.id %>
 		<%= f.hidden_field :status, :value => "1" %>
@@ -9,6 +10,7 @@
 	<% else %>
 	<% end %>
 	<% if @post.status == 1 %>
+	<p>Update mission status to:</p>
 			<%= form_for(@post) do |f| %>
 			<%= f.hidden_field :post_id, :value => @post.id %>
 			<%= f.hidden_field :status, :value => "2" %>
@@ -17,7 +19,6 @@
 	<% else %>
 	<% end %>
 	<% if @post.status == 2 %>
-		<button disabled class="btn btn-disabled"> Mission Accomplished </button>
 	<% else %>
 	<% end %>
 <% else %>
