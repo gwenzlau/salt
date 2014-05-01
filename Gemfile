@@ -7,6 +7,7 @@ gem 'aws-sdk'
 gem 'simple_form'
 gem 'devise'
 gem 'acts_as_votable', '~> 0.8.0'
+gem 'dotenv-rails', :groups => [:development, :test]
 
 group :production do
 	gem 'pg'

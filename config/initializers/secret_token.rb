@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Salt::Application.config.secret_key_base = '747838d636143ceae36c93579434c82beacd0a7bbda6775858130183bc19df1d8c521bead13e2e02c67f0ed256c1ed0babee439ab55c9d4317fcfb1b92db5f92'
+Salt::Application.config.secret_key_base = ENV['RAILS_COOKIE_SECRET']
