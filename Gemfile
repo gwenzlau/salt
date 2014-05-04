@@ -8,6 +8,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'acts_as_votable', '~> 0.8.0'
 gem 'foreman'
+gem 'unicorn'
 
 group :production do
 	gem 'pg'
