@@ -63,6 +63,9 @@ GEM
     erubis (2.7.0)
     excon (0.33.0)
     execjs (2.0.2)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     fog (1.22.0)
       fog-brightbox
       fog-core (~> 1.21, >= 1.21.1)
@@ -205,6 +208,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   dotenv-rails
+  figaro
   foreman
   jbuilder (~> 1.2)
   jquery-rails

@@ -9,6 +9,7 @@ gem 'devise'
 gem 'acts_as_votable', '~> 0.8.0'
 gem 'foreman'
 gem 'unicorn'
+gem 'figaro'
 
 group :production do
 	gem 'pg'
