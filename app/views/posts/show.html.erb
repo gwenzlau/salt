@@ -25,14 +25,17 @@
 		<strong><%= @post.details %></strong>
 		<br>
 		<br>
+		<% if @post.status == 0 %>
 			<% if @post.user == current_user %>
 			<% else %>
 				<% if current_user.voted_for?(@post) %>
-				  <button disabled class="btn btn-disabled">Well Done</button>
+				  <button disabled class="btn btn-disabled">Thanks for Applying</button>
 				<% else %>
 				  <%=link_to "Interested", vote_post_path(@post, type: "up"), method: "put", class: "btn btn-primary" %>
 				<% end %>	
 			<% end %>	
+		<% else %>
+		<% end %>
 
 		<% if @post.user == current_user %>
 		<hr>

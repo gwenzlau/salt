@@ -44,7 +44,7 @@
   </div>
   <div class="tab-pane fade" id="accomplished">
     <% @acc_missions.each do |post| %>
-  Operation <strong><%= link_to post.description, post %></strong> in <%= post.location %> must be completed by <%= post.deadline %>
+  Operation <strong><%= link_to post.description, post %></strong> was completed.
  <% if current_user && post.user == current_user %>
          <small> <div class="actions">
             <%= link_to edit_post_path(post) do %>
