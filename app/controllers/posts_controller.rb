@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     @open_missions = Post.where(:status => "0").order("created_at DESC")
     @ip_missions = Post.where(:status => "1").order("created_at DESC")
     @acc_missions = Post.where(:status => "2").order("created_at DESC")
+    @publish_missions = Post.where(:status => "3").order("created_at DESC")
     @status = current_user.posts.where(:post_id => params[:id])
   end
 
@@ -38,7 +39,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: 'Post was successfully updated.'
+      redirect_to @post, notice: 'Success'
     else
       render action: 'edit'
     end
@@ -77,6 +78,21 @@ class PostsController < ApplicationController
     end
   end
 
+  def publish_mission
+    @post.activity key: 'post.publish_mission'
+    if @post.update_attribute(:status, "3")
+      redirect_to missions_accomplished_path, :notice => "Thanks for sharing the Mission!"
+    else
+     redirect_to @post,  :notice => "An error occured while publishing the mission."
+    end
+  end
+
+  def accomplished
+    @posts = Post.all.order("created_at DESC")
+    @public_missions = Post.where(:status => "3").order("created_at DESC")
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -90,6 +106,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:description, :location, :details, :deadline, :status)
+      params.require(:post).permit(:description, :location, :details, :deadline, :status, :conclusion)
     end
 end

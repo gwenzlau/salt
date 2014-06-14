@@ -11,6 +11,9 @@
 			<h4>Mission Status: In Progress </h4>
 			<% elsif @post.status == 2 %>
 			<h4>Mission Status: Accomplished </h4>
+			<% elsif @post.status == 3 %>
+			<h4>Mission Status: Accomplished & Published </h4>
+			<i> Check out other published missions <%= link_to "here", missions_accomplished_path %>.</i>
 			<% end %>
 
 			<%= render 'status' %>
@@ -24,6 +27,11 @@
 		<i>Mission details:</i>
 		<strong><%= @post.details %></strong>
 		<br>
+		<i>Post Conclusion:</i>
+		<% if @post.status == 3 %>
+		<strong><%= @post.conclusion %></strong>
+		<% end %>
+		<br>
 		<br>
 		<% if @post.status == 0 %>
 			<% if @post.user == current_user %>
@@ -34,7 +42,6 @@
 				  <%=link_to "Interested", vote_post_path(@post, type: "up"), method: "put", class: "btn btn-primary" %>
 				<% end %>	
 			<% end %>	
-		<% else %>
 		<% end %>
 
 		<% if @post.user == current_user %>
@@ -55,9 +62,37 @@
 			<hr>
 			<% end %>
 			<br>
+
+			<% if @post.status == 2 %>
 			<hr>
+			<% if @post.conclusion  %>
+			 <p> Conclusion:
+			  <strong><%= @post.conclusion %></strong></p>
+	<p>Would you like to Publish this mission and inspire future Slyfoxes?</p>
+		 <%= form_for(@post) do |f| %>
+		<%= f.hidden_field :post_id, :value => @post.id %>
+		<%= f.hidden_field :status, :value => "3" %>
+		<%= f.button "Publish", :class => "btn btn-primary btn-sm" %>
+		<% end %>
+			<% else %>
+			<%= form_for(@post) do |f| %>
+			<%= f.label "Mission Conclusion:" %>
+   			 <%= f.text_field :conclusion, class: "form-control", :placeholder => "Any final words?" %>
+   			 <div class="form-group" align="right">
+    		<%= f.submit class: "btn btn-primary" %>
+  			</div>
+   			 <hr>
+   			 <% end %>
+   			 <% end %>
+   			 <% end %>
+   			 <% if @post.status == 3 %>
+   			 <p>Conclusion: <strong><%= @post.conclusion %></strong></p>
+   			 <p>Share on social networks!</p>
+   			 <% end %>
 			<%= link_to edit_post_path(@post) do %>
 			<br>
+			
+			
         <span class="glyphicon glyphicon-edit"></span>
         Edit 
       <% end %>  

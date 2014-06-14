@@ -1,0 +1,20 @@
+<h1 align="center"><span class="badge"><%= @public_missions.count %></span> Accomplished Missions  </h1>
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#open" data-toggle="tab">Accomplished</a></li>
+
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade in active" id="open">
+  	<br>
+    <% @public_missions.each do |post| %>
+    Operation <strong><%= link_to post.description, post %></strong> in <%= post.location %>
+    <hr>
+	<% end %>
+  </div>
+</div>
+
+<script>
+  $(function () {
+    $('#myTab a:first').tab('show')
+  })
+</script>
