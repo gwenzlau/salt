@@ -9,13 +9,27 @@
 </div>
 <div class="panel-body">
 <ul class="nav nav-tabs">
-  <li class="active"><a href="#">My Missions</a></li>
-  <li><a href="#">Skills</a></li>
-  <li><a href="#">Assets</a></li>
+  <li class="active"><a href="#missions" data-toggle="tab">My Missions</a></li>
+  <li><a href="#services" data-toggle="tab">Services</a></li>
+  <li><a href="#assets" data-toggle="tab">Assets</a></li>
 </ul>
-<% @posts.each do |post| %>
-<li><%= link_to post.description, post %> in <%= post.location %> posted on <%= post.created_at.strftime("%d %b. %Y") %></li>
-<% end %>
+ 	<div class="tab-pane fade in active" id="missions">
+		<% @posts.each do |post| %>
+		<li>
+			<%= link_to post.description, post %> in <%= post.location %> posted on <%= post.created_at.strftime("%d %b. %Y") %>
+		</li>
+		<% end %>
+	</div>
+	<div class="tab-pane fade in active" id="services">
+	</div>
+	<div class="tab-pane fade in active" id="assets">
+	</div>
 </div>
 </div>
 </div>
+
+<script>
+  $(function () {
+    $('#myTab a:first').tab('show')
+  })
+</script>
